@@ -1,0 +1,6 @@
+if SHIELD_CLANKERPAD
+
+config ZMK_KEYBOARD_NAME
+    default "Clankerpad"
+
+endif # SHIELD_CLANKERPAD

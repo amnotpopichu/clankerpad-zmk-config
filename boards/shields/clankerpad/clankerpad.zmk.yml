@@ -1,0 +1,14 @@
+file_format: "1"
+id: clankerpad
+name: ClankerPad
+type: shield
+
+url: https://github.com/amnotpopichu/clankerpad
+
+features:
+  - keys
+  - encoder
+  - studio
+
+requires:
+  - seeed_xiao

@@ -1,0 +1,22 @@
+#include <physical_layouts.dtsi>
+
+/ {
+    default_layout: default_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "Default Layout";
+        transform = <&default_transform>;
+        kscan = <&kscan0>;
+
+        keys  //                     w   h    x    y     rot    rx    ry
+            = <&key_physical_attrs 100 100  100    0       0     0     0>  // key 2
+            , <&key_physical_attrs 100 100  200    0       0     0     0>  // key 3
+            , <&key_physical_attrs 100 100    0  100       0     0     0>  // key 4
+            , <&key_physical_attrs 100 100  100  100       0     0     0>  // key 5
+            , <&key_physical_attrs 100 100  200  100       0     0     0>  // key 6
+            , <&key_physical_attrs 100 100    0  200       0     0     0>  // key 7
+            , <&key_physical_attrs 100 100  100  200       0     0     0>  // key 8
+            , <&key_physical_attrs 100 100  200  200       0     0     0>  // key 9
+            , <&key_physical_attrs 100 100    0    0       0     0     0>  // encoder btn
+            ;
+    };
+};

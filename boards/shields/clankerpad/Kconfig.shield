@@ -1,0 +1,2 @@
+config SHIELD_CLANKERPAD
+    def_bool $(shields_list_contains,clankerpad)
