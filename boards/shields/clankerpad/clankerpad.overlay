@@ -1,9 +1,19 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "clankerpad-layouts.dtsi"
+
 / {
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &default_layout;
+        zmk,battery = &vbatt;          // <-- add this line
+    };
+
+    vbatt: vbatt {                     // <-- new node, same level as kscan0/encoder/etc
+        compatible = "zmk,battery-voltage-divider";
+        io-channels = <&adc 7>;
+        output-ohms = <2000000>;
+        full-ohms = <3000000>;
+        power-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
     };
 
     kscan0: kscan0 {
@@ -11,15 +21,15 @@
         wakeup-source;
 
         input-gpios
-            = <&xiao_d 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 2 (top-middle)
-            , <&xiao_d 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 3 (top-right)
-            , <&xiao_d 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 4 (mid-left)
-            , <&xiao_d 9  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 5 (mid-mid)
-            , <&xiao_d 5  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 6 (mid-right)
-            , <&xiao_d 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 7 (bot-left)
-            , <&xiao_d 8  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 8 (bot-mid)
-            , <&xiao_d 7  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 9 (bot-right)
-            , <&xiao_d 2  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // encoder button
+            = <&xiao_d 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&xiao_d 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&xiao_d 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&xiao_d 9  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&xiao_d 5  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&xiao_d 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&xiao_d 8  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&xiao_d 7  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&xiao_d 2  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             ;
     };
 
@@ -48,4 +58,8 @@
         sensors = <&encoder>;
         triggers-per-rotation = <20>;
     };
+};
+
+&adc {                                 // <-- outside the / { } block
+    status = "okay";
 };
